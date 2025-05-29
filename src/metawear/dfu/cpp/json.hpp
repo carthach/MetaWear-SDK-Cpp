@@ -29,6 +29,7 @@ SOFTWARE.
 #ifndef NLOHMANN_JSON_HPP
 #define NLOHMANN_JSON_HPP
 
+#include <cstdint>
 #include <algorithm>
 #include <array>
 #include <cassert>
