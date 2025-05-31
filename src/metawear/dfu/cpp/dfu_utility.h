@@ -8,6 +8,7 @@
 //  Copyright (c) 2014 Nordic Semiconductor. All rights reserved.
 //
 
+#include <cstdint>
 #include <stdint.h>
 
 //#import <Foundation/Foundation.h>
