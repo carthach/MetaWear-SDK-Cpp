@@ -2,7 +2,10 @@
 
 include config.mk
 
-CXXFLAGS+=-std=c++11 -I$(SOURCE_DIR) -I/usr/local/opt/llvm/include
+LLVM_INCLUDE_DIR=$(shell llvm-config --includedir 2>/dev/null || echo /usr/local/opt/llvm/include)
+LLVM_LIB_DIR=$(shell llvm-config --libdir 2>/dev/null || echo /usr/local/opt/llvm/lib)
+
+CXXFLAGS+=-std=c++11 -I$(SOURCE_DIR) -I$(LLVM_INCLUDE_DIR)
 
 ifeq ($(CONFIGURATION),debug)
     CXXFLAGS+=-g
@@ -13,7 +16,7 @@ else ifeq ($(CONFIGURATION),release)
 else
     $(error Invalid value for "CONFIGURATION", must be 'release' or 'debug')
 endif
-LDFLAGS+=-ldl -rdynamic -L/usr/local/opt/llvm/lib -lclang
+LDFLAGS+=-ldl -rdynamic -L$(LLVM_LIB_DIR) -lclang
 
 ifeq ($(MACHINE),x86)
     CXXFLAGS+=-m32
